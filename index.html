@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Why I Love America</title>
+  <meta name="description" content="Share your story of why you love America.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="stripe"></div>
+    <h1>Why I Love America</h1>
+    <p class="intro">Everyone has a reason. Maybe it's a person, a place, a moment, or a freedom you never want to take for granted. Tell us yours.</p>
+  </header>
+
+  <main>
+    <section class="card" id="share">
+      <h2>Share your story</h2>
+      <form id="story-form">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" placeholder="First name is fine" required>
+
+        <label for="place">Where you're from</label>
+        <input id="place" name="place" type="text" placeholder="City, State">
+
+        <label for="story">Your story</label>
+        <textarea id="story" name="story" rows="7" placeholder="I love America because..." required></textarea>
+
+        <button type="submit">Send my story</button>
+        <p class="note">Clicking send opens your email app with your story filled in. Just press send there.</p>
+      </form>
+    </section>
+
+    <section id="stories">
+      <h2>Stories</h2>
+      <!--
+        To publish a story, copy one <article> block below, paste it here,
+        and replace the text with the story you received.
+      -->
+      <article class="story">
+        <p>"This is where a story will appear. Be the first to share yours!"</p>
+        <p class="byline">Example, Anywhere USA</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>whitehouse.co is a private community site and is not affiliated with the U.S. government or the White House.</p>
+  </footer>
+
+  <script>
+    // Where submitted stories are emailed. Change this to your own address.
+    var STORY_EMAIL = "stories@whitehouse.co";
+
+    document.getElementById("story-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("name").value.trim();
+      var place = document.getElementById("place").value.trim();
+      var story = document.getElementById("story").value.trim();
+      var subject = "My story: why I love America";
+      var body = story + "\n\n" + name + (place ? ", " + place : "");
+      window.location.href = "mailto:" + STORY_EMAIL +
+        "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>
